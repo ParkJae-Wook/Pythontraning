@@ -2,21 +2,31 @@ import tkinter as tk
 
 def on_click(event):
     text = event.widget.cget("text")
+    currunt_text = str(view_label.cget("text"))
     if text == "=":
+        if "^" in currunt_text:
+            currunt_text=currunt_text.replace("^", "**")
+        elif "%" in currunt_text:
+            currunt_text=currunt_text.replace("%", "/100")
+        else:
+            pass 
         try:
-            result = eval(view_label.cget("text"))
+            result = eval(currunt_text, {"__builtins__": None}, {})
             view_label.config(text=str(result))
         except Exception as e:
             view_label.config(text="Error")
     elif text == "AC":
         view_label.config(text="0")
     elif text == "CE":
-        view_label.config(text=view_label.cget("text")[:-1])
+        if currunt_text == "Error" or currunt_text == "0":
+            view_label.config(text="0")
+        else:
+            view_label.config(text=currunt_text[:-1])
     else:
-        if view_label.cget("text") == "0":
+        if currunt_text == "0":
             view_label.config(text=text)
         else:
-            view_label.config(text=view_label.cget("text") + text)
+            view_label.config(text=currunt_text + text)
 
 window = tk.Tk()
 window.title("Calculator")
