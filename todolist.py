@@ -27,7 +27,7 @@ class TodoList:
         self.combobox = ttk.Combobox(self.ct, values=["Sunday","Monday", "Tuseday", "Wednesday","Thursday","Friday","Saturday"], font=("Arial", 10))
         self.combobox.current(0)
         self.combobox.grid(row=0, column=6,padx=5, pady=10,sticky='nwes')
-        
+        self.combobox.bind("<<ComboboxSelected>>",self.show_tasks)
 
         self.add_button = tk.Button(self.ct, text="Add Task", font=("Arial", 15), width=10,command=self.add_task)
         self.add_button.grid(row=1, column=0, columnspan=2,padx=10, pady=10,sticky='nwes')
@@ -77,7 +77,7 @@ class TodoList:
         except IndexError:
             messagebox.showwarning("Warning", "You must select a task.")
 
-    def show_tasks(self):
+    def show_tasks(self,event = None):
         self.task_listbox.delete(0, tk.END)
         for task in self.tasks[self.days_key[self.combobox.get()]]:
             self.task_listbox.insert(tk.END, task)
@@ -98,12 +98,7 @@ def select_list():
 
 if __name__ == "__main__":
     root = tk.Tk()
-    Sun = TodoList(root)
-    Mon = TodoList(root)
-    Tue = TodoList(root)
-    Wed = TodoList(root)
-    Thu = TodoList(root)
-    Fri = TodoList(root)
-    Sat = TodoList(root)    
+    weeklylist = TodoList(root)
+       
     
     root.mainloop()
