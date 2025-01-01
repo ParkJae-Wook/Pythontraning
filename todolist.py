@@ -24,7 +24,8 @@ class TodoList:
         self.label.grid(row=0, column=0, columnspan=2,padx=10, pady=10,sticky='nwes')
         self.task_entry = tk.Entry(self.ct, font=("Arial", 15))
         self.task_entry.grid(row=0, column=2, columnspan=4,padx=10, pady=10,sticky='nwes')
-        self.combobox = ttk.Combobox(self.ct, values=["Sunday","Monday", "Tuseday", "Wednesday","Thursday","Friday","Saturday"], font=("Arial", 10))
+        self.combobox = ttk.Combobox(self.ct, \
+            values=["Sunday","Monday", "Tuseday", "Wednesday","Thursday","Friday","Saturday"], font=("Arial", 10))
         self.combobox.current(0)
         self.combobox.grid(row=0, column=6,padx=5, pady=10,sticky='nwes')
         self.combobox.bind("<<ComboboxSelected>>",self.show_tasks)
@@ -99,6 +100,4 @@ def select_list():
 if __name__ == "__main__":
     root = tk.Tk()
     weeklylist = TodoList(root)
-       
-    
     root.mainloop()
