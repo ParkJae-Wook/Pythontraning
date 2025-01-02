@@ -12,18 +12,21 @@ class TodoList:
         self.root.resizable(0, 0)
 
         self.tasks = [[],[],[],[],[],[],[]]
-        self.days_key = {"Sunday":0,"Monday":1, "Tuseday":2, "Wednesday":3,"Thursday":4,"Friday":5,"Saturday":6}
+        self.days_key = {"Sunday":0, "Monday":1, "Tuseday":2, "Wednesday":3, "Thursday":4, "Friday":5, "Saturday":6}
         self.load_tasks()
 
         self.ct = tk.Frame(self.root)
         self.ct.grid(row=0, column=0,rowspan=2, columnspan=10,sticky='nwes')
+        
         self.ct2 = tk.Frame(self.root)
         self.ct2.grid(row=2, column=0,rowspan=6,columnspan=10, sticky='nwes')
         
         self.label = tk.Label(self.ct, text="Enter a task:", font=("Arial", 15))
         self.label.grid(row=0, column=0, columnspan=2,padx=10, pady=10,sticky='nwes')
+        
         self.task_entry = tk.Entry(self.ct, font=("Arial", 15))
         self.task_entry.grid(row=0, column=2, columnspan=4,padx=10, pady=10,sticky='nwes')
+        
         self.combobox = ttk.Combobox(self.ct, \
             values=["Sunday","Monday", "Tuseday", "Wednesday","Thursday","Friday","Saturday"], font=("Arial", 10))
         self.combobox.current(0)
@@ -45,6 +48,7 @@ class TodoList:
         self.scrollbar.grid(row=0, column=10,rowspan=10,sticky='nwes')
         self.task_listbox.config(yscrollcommand=self.scrollbar.set)
         self.show_tasks()
+    
     def add_task(self):
         task = self.task_entry.get()
         if task:
