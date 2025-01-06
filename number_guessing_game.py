@@ -126,12 +126,9 @@ class RunGame:
             return
         
 
-    
-
-
 window = tk.Tk()
 window.title("숫자 맞추기 게임!")
-window.geometry("275x250")
+window.geometry("275x250+800+350")
 window.resizable(0, 0)
 #창 생성
 
